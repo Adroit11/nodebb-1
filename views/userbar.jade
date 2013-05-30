@@ -1,0 +1,22 @@
+.navbar.navbar-inverse.nav
+    .navbar-inner
+        .container
+          a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+          a.brand(href='/') #{settings.name}
+          .nav-collapse.collapse
+            ul.nav
+              li.divider-vertical
+              li
+                a(href='/latest') Latest
+              li
+                a(href='/category') Categories
+            .pull-right
+              ul.nav.pull-right
+                li.dropdown
+                  if typeof username != 'undefined'
+                    li 
+                      a.dropdown-toggle(href='/user/#{username}', data-toggle='dropdown') Welcome - #{username}
+                    li 
+                      a(href="/logout") Logout
+                  else
+                    a.dropdown-toggle(href='/login', data-toggle='dropdown') Login

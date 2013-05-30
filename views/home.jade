@@ -1,0 +1,28 @@
+#main   
+    include userbar
+    #ss
+        div
+            #logo
+                h1 Talk JS
+            #display
+                div
+                    #container
+                        if msg == 'invalid'
+                            div(class="alert alert-error")
+                                a(class="close" ,data-dismiss="alert",href="#")&times;
+                                p Username or Password Incorrect
+                        form(method='post')
+                            | Enter your name if you want to be a ninja
+                            div
+                                <br>
+                                lable Username
+                                <br>
+                                input(type='text', name='username', value='admin')
+                                <br>
+                                lable Password
+                                <br>
+                                input(type='text', name='password', value='asd')
+                                <br>
+                                input(type='submit', value='Log In' , class='btn btn-primary')
+                    <br>
+                include footer

@@ -1,0 +1,29 @@
+{
+  "name": "NodeBB",
+  "version": "0.1.0",
+  "description": "***\r #### Following are the node modules used",
+  "main": "app.js",
+  "dependencies": {
+    "async": "~0.2.8",
+    "express": "~2.5.8",
+    "jade": "~0.27.7",
+    "jugglingdb": "~0.2.0-32",
+    "jugglingdb-mysql": "~0.0.1-6",
+    "moment": "~1.7.2",
+    "mysql": "~2.0.0-alpha8",
+    "socket.io": "~0.9.14",
+    "stylus": "~0.31.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": "",
+  "keywords": [
+    "node",
+    "forum"
+  ],
+  "author": "Pasindu De Silva",
+  "license": "GNU",
+  "readmeFilename": "README.md"
+}

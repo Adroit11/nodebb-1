@@ -1,0 +1,80 @@
+#main	
+	include userbar
+	#display
+			div
+				if typeof username != 'undefined'
+					script(src="//tinymce.cachefly.net/4.0/tinymce.min.js")
+					script
+						tinymce.init({selector:'textarea'});
+
+				script(src="/socket.io/socket.io.js")
+				script
+					var socket = io.connect('http://localhost');
+					socket.emit('news2', { my: 'dsssata' });
+					socket.on('news2', function (data) {
+								toastr.info(data.hello,data.header)
+					});
+					function post()
+					{
+						console.log('Out');
+						socket.emit('my other event', { my: 'data' });
+						return true;					
+					}
+				div.content
+						ul.breadcrumb
+							li
+								a(href='/') Home
+								span.divider /
+							li
+								a(href='/category/#{category.url_slag}')=topic.category
+								span.divider /
+							li.active  #{title}
+						div.thread-count
+							ul
+									li Post <br> #{topic.post} 
+									li View <br> #{topic.views} 
+									li Created <br> #{moment(topic.created_at).format("DD-MMM-YY HH:mm")}
+									li Last Post <br>  #{moment(topic.updated_at).format("DD-MMM-YY HH:mm")}
+									li Likes <br> #{topic.likes} 
+
+						-for (var id in data)
+								- var item = data[id]
+								div.thread-entry
+									div.entry-user
+
+										img(src='/pic.jpg', height =50 , width=50)
+										<br>
+										a( href='/user/#{item.username}')=item.username
+									div.ent-all
+										div.entry-post
+											div.entry-comment
+												div.coment 
+													!{item.comment}
+
+											div.entry-details 
+												p 
+													span #{item.likes}
+													if item.likes <= 1
+														|	Like | 
+													else
+														|	Likes |
+													span #{moment(item.created_at).format("DD-MM-YY HH:mm")}
+
+														a(class='btn' , href="http://#{settings.url}?like=#{item.id}" , style='float:left; margin-left:5px;') Like
+														a(class='btn' , href="/login" , style='float:left; margin-left:5px;') Reply
+
+													
+
+
+						if typeof username != 'undefined'
+							div.commenting
+								form(method='post' , style="width:97%;")
+									p Post Reply <br> <br>
+									div
+										textarea( style="width:90%; height:100px;" ,name='reply')
+										input(type='submit', class='btn btn-primary' ,value='Post Reply')
+										input(type='hidden', onclick="post()" ,value='#{topic.id}' , name='topic_id')
+						else
+							div
+								a(class='btn btn-primary' , style='margin-left:120px;',href="/login") Login To Reply
+

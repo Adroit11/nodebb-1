@@ -1,0 +1,40 @@
+#main
+	script
+		window.onload = function() {
+			///console.log( "ready!" );
+		};
+
+	include userbar
+	#display
+			if  msg.fail!=''
+				div(class="alert alert-error",data-dismiss="alert")
+					a(class="close" ,data-dismiss="alert",href="#")&times;
+					p #{msg.fail}
+			div
+				table.main-topic(style='width:100%; ')
+					-for (var id in data)
+						- var item = data[id]
+							tr(style='padding:5px; ')
+								td 
+									div.topic-details
+										a(href='/topic/#{item.url_slag}')=item.topic 
+
+								td #{item.category}
+								td #{item.post}
+								td #{item.views}
+								td #{item.likes}
+									a(class='btn btn-mini', style='margin-left:10px;' ,href="http://#{settings.url}?like=#{item.id}") Like
+								td #{moment(item.created_at).format("DD-MMM-YY HH:mm")}
+								td #{moment(item.updated_at).format("DD-MMM-YY HH:mm")}
+
+					thead
+						tr
+							th.head-topic  Topic
+							th Category
+							th Post
+							th View
+							th Likes
+							th Created_at
+							th Updated_at
+
+			include footer

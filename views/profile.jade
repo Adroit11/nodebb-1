@@ -1,0 +1,23 @@
+#main   
+    include userbar
+    #ss
+        #display
+            #container
+                div.profile-head
+                    img(src='/pic.jpg' , class='profile-avatar')                        
+                    div
+                h1  #{data.first_name}
+                <br>
+                p First Name    - 	#{data.first_name}
+                p Last Name     - 	#{data.last_name}
+                p Joined At     - 	#{data.created_at} 
+                p Status        - 	#{data.status} 
+                p Post Count    - 	#{data.post_count} 
+                p Thread Count  -   #{data.thread_count}
+                p Email         - 	#{data.email}
+                p About         - 	#{data.about} 
+                p Nick Name     - 	#{data.nick_name} 
+                p Gender        - 	#{data.gender} 
+                p Username      - 	#{data.username} 
+
+            include footer
